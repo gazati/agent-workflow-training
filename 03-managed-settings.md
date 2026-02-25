@@ -1,0 +1,58 @@
+# Managed Settings (Organization-Wide Enforcement)
+
+Managed settings are the strongest layer. They are set by an admin at the OS level and cannot be overridden by developers in their project or user settings.
+
+## File location
+
+| OS | Path |
+|---|---|
+| Linux / WSL | `/etc/claude-code/managed-settings.json` |
+| macOS | `/Library/Application Support/ClaudeCode/managed-settings.json` |
+| Windows | `C:\Program Files\ClaudeCode\managed-settings.json` |
+
+## Example: lock down .env access organization-wide
+
+```json
+{
+  "permissions": {
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./secrets/**)",
+      "Read(~/.ssh/**)",
+      "Read(~/.aws/**)",
+      "Read(~/.kube/**)",
+      "Bash(printenv *)",
+      "Bash(env)",
+      "Bash(env *)",
+      "Bash(echo $*)",
+      "Bash(echo ${*})",
+      "Bash(cat .env*)",
+      "Bash(cat */.env*)"
+    ]
+  },
+  "allowManagedPermissionRulesOnly": true,
+  "allowManagedHooksOnly": true
+}
+```
+
+## Key flags
+
+| Flag | Effect |
+|---|---|
+| `allowManagedPermissionRulesOnly` | Ignores permission rules from project and user settings — only managed rules apply |
+| `allowManagedHooksOnly` | Ignores hooks from project and user settings — only managed hooks apply |
+
+## Deployment
+
+1. Create the managed settings file at the OS-level path above
+2. Set file permissions so developers cannot modify it (owned by root, read-only for others)
+3. Distribute via your configuration management tool (Ansible, Chef, Puppet, etc.)
+
+## Why this matters
+
+- Project-level `.claude/settings.json` — a developer can edit or remove deny rules
+- User-level `~/.claude/settings.json` — same problem, the developer controls it
+- Managed settings — only an admin with root/sudo can modify them
+
+For environments where sensitive credentials exist on developer machines, managed settings are the only way to guarantee enforcement.
