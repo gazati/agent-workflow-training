@@ -106,7 +106,13 @@ After installing, test that the hook fires:
 2. Ask Claude to edit `.claude/settings.json`
 3. You should see a manual approval prompt instead of auto-approval
 
-## Further Reading
+## Tips — Getting More Out of Claude Code
+
+- [tips/memory-and-claude-md.md](tips/memory-and-claude-md.md) — CLAUDE.md files, auto-memory, how to teach Claude your project
+- [tips/mcps.md](tips/mcps.md) — MCP servers: connect Claude to databases, GitHub, Sentry, and more
+- [tips/skills.md](tips/skills.md) — slash commands and custom skills: `/deploy`, `/fix-issue`, etc.
+
+## Further Reading (Security)
 
 - [01-permission-deny-rules.md](01-permission-deny-rules.md) — deny rule syntax and patterns
 - [02-pretooluse-hooks.md](02-pretooluse-hooks.md) — how hooks work, examples
@@ -218,7 +224,13 @@ bash install.sh --both      # оба уровня, независимо от .gi
 2. Попросите Claude отредактировать `.claude/settings.json`
 3. Вы должны увидеть запрос на ручное подтверждение вместо автоматического одобрения
 
-## Дополнительное чтение
+## Советы — как использовать Claude Code эффективнее
+
+- [tips/memory-and-claude-md.md](tips/memory-and-claude-md.md) — файлы CLAUDE.md, авто-память, как обучить Claude вашему проекту
+- [tips/mcps.md](tips/mcps.md) — MCP-серверы: подключите Claude к базам данных, GitHub, Sentry и другим
+- [tips/skills.md](tips/skills.md) — слэш-команды и пользовательские навыки: `/deploy`, `/fix-issue` и т.д.
+
+## Дополнительное чтение (безопасность)
 
 - [01-permission-deny-rules.md](01-permission-deny-rules.md) — синтаксис и паттерны deny-правил
 - [02-pretooluse-hooks.md](02-pretooluse-hooks.md) — как работают хуки, примеры
